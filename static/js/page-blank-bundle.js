@@ -1,0 +1,1 @@
+/* Scripts de una pagina */
