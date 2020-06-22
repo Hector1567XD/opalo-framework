@@ -20,28 +20,4 @@ trait HelperComplement
     return $content;
   }
 
-  public static function taxonomiesCheckbox($taxonomyName,$divClass="custom-control custom-radio",$checkClass="custom-control-input", $labelClass="custom-control-label"){
-    $taxonomies = get_terms( array(
-        'taxonomy' => $taxonomyName,
-        'hide_empty' => false,
-    ) );
-    $term_value = null;
-    if (isset($_GET[$taxonomyName]) && $_GET[$taxonomyName] !== 'none') {
-        $term_value = $_GET[$taxonomyName];
-    }
-
-    foreach ($taxonomies as $term){
-        echo '<div class="'.$divClass.'">';
-        if ($term_value === $term->slug) {
-            echo '<input type="radio" checked class="'.$checkClass.'" id="color_'.$term->slug.'" name="'.$taxonomyName.'" value="'.$term->slug.'" />';
-        }else{
-            echo '<input type="radio" class="'.$checkClass.'" id="color_'.$term->slug.'" name="'.$taxonomyName.'" value="'.$term->slug.'" />';
-        }
-        
-        echo '<label class="'.$labelClass.'" for="color_'.$term->slug.'">'.ucfirst($term->slug);
-        echo "</label>";
-        echo "</div>";
-    }
-  }
-
 }

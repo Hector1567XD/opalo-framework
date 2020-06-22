@@ -6,6 +6,7 @@
  *  explico cada uno de los complementos al momento de importarlos en el helper
  */
 
+use Opalo\Helpers\Complements\TaxonomiesComplement;
 use Opalo\Helpers\Complements\TemplateComplement;
 use Opalo\Helpers\Complements\NavbarComplement;
 use Opalo\Helpers\Complements\HelperComplement;
@@ -26,6 +27,8 @@ use Opalo\Helpers\Complements\ModComplement;
 
 class InPage {
 
+  // Funciones referentes a las taxonomias
+  use TaxonomiesComplement;
   // Funciones utiles al momento de programar la plantilla
   use TemplateComplement;
   // Formas mas rapidas de crear un navbar!
