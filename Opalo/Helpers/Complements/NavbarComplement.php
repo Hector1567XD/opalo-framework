@@ -18,7 +18,7 @@ trait NavbarComplement
     public static function navMenu($menu = 'main-menu', $menu_class = null, $args = [], $walker = null) {
 
       if (!isset($args['menu']))
-        $args['menu']             = $menu;
+        $args['theme_location']   = $menu;
 
       if (!isset($args['container']))
         $args['container']        = False;
@@ -38,6 +38,13 @@ trait NavbarComplement
       if (!isset($args['walker']))
         $args['walker']           = ($walker) ? $walker : new NavbarWalker($args);
 
+      if (isset($args['active_class']))
+        add_filter('nav_menu_css_class' , function($classes, $item) use ($args) {
+          if (in_array('current-menu-item', $classes) ){
+            $classes[] = $args['active_class'];
+          }
+          return $classes;
+        } , 10 , 2);
 
       return wp_nav_menu($args);
 

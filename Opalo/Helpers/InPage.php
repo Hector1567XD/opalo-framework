@@ -8,6 +8,7 @@
 
 use Opalo\Helpers\Complements\TemplateComplement;
 use Opalo\Helpers\Complements\NavbarComplement;
+use Opalo\Helpers\Complements\HelperComplement;
 use Opalo\Helpers\Complements\PathComplement;
 use Opalo\Helpers\Complements\ModComplement;
 
@@ -29,6 +30,8 @@ class InPage {
   use TemplateComplement;
   // Formas mas rapidas de crear un navbar!
   use NavbarComplement;
+  // Funciones variadas de menor envergadura
+  use HelperComplement;
   // Ayuda a ubicar las rutas base de multiples ubicaciones (por ahora, solo la plantilla)
   use PathComplement;
   // El punto fuerte del framework!, obtiene los mods, y si es un __, puede variar entre un mod y un texto de polylang!

@@ -13,6 +13,15 @@ trait ModComplement
       return Self::mod( $modName, $defaultPath );
   }
 
+  public static function postFeaturedImage( $postId, $defaultPath = null) {
+
+      $featured_img_url = get_the_post_thumbnail_url($postId,'full');
+      if (!$featured_img_url) {
+        $featured_img_url = Self::getTemplateIMGUri().$defaultPath;
+      }
+      return $featured_img_url;
+  }
+
   public static function mod( $modName, $default = null) {
     return get_theme_mod( $modName , $default );
   }
@@ -29,10 +38,10 @@ trait ModComplement
     }
 
     // Obtenemos el texto y la traduccion del mismo
-    return Multilenguague::getPlltranslate(
+    return $languague->getPlltranslate(
       Self::mod( $string, $default ), $default
     );
-    
+
     //return Multilenguague::getPlltranslate($string, $default );
   }
 

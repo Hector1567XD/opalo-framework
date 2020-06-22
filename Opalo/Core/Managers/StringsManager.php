@@ -24,12 +24,12 @@ trait StringsManager
 
       # [Deprecated] Registramos los textos con llaves en polyland [Deprecated]
       # $this->lenguague->registerPolylangTexts($this->strings); [Deprecated]
-
       # Agregamos los textos a inputs del personalizador de plantillas sin prefijos, un solo idioma
       $this->settings->addInputsArrayBased($this->strings, null);
       $this->lenguague->registerPolylangTextsBySettings($this->strings);
 
     }else{
+      //var_dump('a');exit();
       // Si no esta instalado el polyland
       # Agregamos los textos a inputs del personalizador de plantillas para todos los idiomas
       $this->settings->addInputsArrayBased($this->strings, $this->lenguague->getLangList());

@@ -7,31 +7,32 @@ define('SBP', 'static/');
 trait ImportsMap {
 
   protected $items = [
+
     'main' => [
-      'styles' => [
-        SBP.'vendor/bootstrap/css/bootstrap.min.css',
-        SBP.'css/app.css'
-      ],
-      'scripts' => [
-        SBP.'vendor/jquery/jquery.min.js',
-        SBP.'vendor/bootstrap/bootstrap.bundle.min.js',
-        SBP.'js/app.js'
-      ]
-    ],
+       'styles' => [
+         SBP.'vendor/bootstrap/css/bootstrap.min.css',
+         SBP.'css/app.css'
+       ],
+       'scripts' => [
+         SBP.'vendor/jquery/jquery.min.js',
+         SBP.'vendor/bootstrap/bootstrap.bundle.min.js',
+         SBP.'js/app.js'
+       ]
+     ],
 
     'homePage' => [
-      'styles'  => [],
-      'scripts' => []
+      'styles'  => [SBP.'css/home-styles.css'],
+      'scripts' => [SBP.'js/home-bundle.js']
     ],
 
     'blogPage' => [
-      'styles'      => [],
-      'scripts'     => []
+      'styles'      => [SBP.'css/page-blog-styles.css'],
+      'scripts'     => [SBP.'js/page-blog-bundle.js']
     ],
 
     'archivePage' => [
-      'styles'      => [],
-      'scripts'     => []
+      'styles'      => [SBP.'css/page-posts-styles.css'],
+      'scripts'     => [SBP.'js/page-posts-bundle.js']
     ],
 
     'singlePage' => [
@@ -40,8 +41,8 @@ trait ImportsMap {
     ],
 
     'simplePage' => [
-      'styles'      => [],
-      'scripts'     => []
+      'styles'    => [SBP.'css/page-blank-styles.css'],
+      'scripts'   => [SBP.'js/page-blank-bundle.js']
     ],
 
     # Para plantillas de paginas personalizadas
@@ -59,6 +60,7 @@ trait ImportsMap {
       'styles'      => [],
       'scripts'     => []
     ],
+    
   ];
 
 }

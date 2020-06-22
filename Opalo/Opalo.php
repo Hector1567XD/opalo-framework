@@ -19,13 +19,19 @@ class Opalo
   protected $settings;
   protected $strings;
   protected $supports;
+  protected $customPosts;
+  protected $taxonomies;
+  protected $sidebars;
 
-  function addMaps($actions, $imports, $settings, $strings, $supports) {
+  function addMaps($actions, $imports, $settings, $strings, $supports, $customPosts, $taxonomies, $sidebars) {
     $this->actions  = new $actions  ();
     $this->imports  = new $imports  ();
     $this->settings = new $settings ();
     $this->strings  = new $strings  ();
     $this->supports = new $supports ();
+    $this->customPosts = new $customPosts ();
+    $this->taxonomies = new $taxonomies ();
+    $this->sidebars = new $sidebars ();
   }
 
   function initialize() {
@@ -39,7 +45,10 @@ class Opalo
       $this->strings  ->getItems(),
       $this->imports  ->getItems(),
       $this->actions  ->getItems(),
-      $this->supports ->getItems()
+      $this->supports ->getItems(),
+      $this->customPosts ->getItems(),
+      $this->taxonomies ->getItems(),
+      $this->sidebars ->getItems()
     );
 
     $kernel->start();

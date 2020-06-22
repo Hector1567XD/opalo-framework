@@ -207,12 +207,13 @@ class SettingsUtil {
 
   function addInputsArrayBased($inputs, $langs = ['en', 'es']) {
     if ($langs) {
-      foreach ($inputs as $inputID => $input)
+      foreach ($inputs as $inputID => $input) {
         foreach ($langs as $lang)
-          $this->createControlSettingCustom($inputID.'_'.$lang, Self::ieArray($input,'default'), $input['label'].' ('.$lang.')', $inputs['section'], Self::ieArray($input,'type','text'), Self::ieArray($input,'priority'));
+          $this->createControlSettingCustom($inputID.'_'.$lang, Self::ieArray($input,'default'), $input['label'].' ('.$lang.')', Self::ieArray($input,'section',null), Self::ieArray($input,'type','text'), Self::ieArray($input,'priority'));
+      }
     }else{
       foreach ($inputs as $inputID => $input)
-        $this->createControlSettingCustom($inputID, Self::ieArray($input,'default'), $input['label'].' ('.$lang.')', $inputs['section'], Self::ieArray($input,'type','text'), Self::ieArray($input,'priority'));
+        $this->createControlSettingCustom($inputID, Self::ieArray($input,'default'), $input['label'], Self::ieArray($input,'section',null), Self::ieArray($input,'type','text'), Self::ieArray($input,'priority'));
     }
   }
 

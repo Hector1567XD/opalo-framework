@@ -13,18 +13,13 @@ class App extends Opalo
 
   use Config;
 
+  // There's nothing here because ... HOLLYWOOD ;D
+
   public function handleMaps() {
-    $this->addMaps(Actions::class, Imports::class, Settings::class, Strings::class, Supports::class);
+    $this->addMaps(Actions::class, Imports::class, Settings::class, Strings::class, Supports::class,CustomPosts::class, Taxonomies::class, Sidebars::class);
   }
 
   public function onInitialize() {
-    # Aqui va el codigo que normalmente pondrias en functions.php
-
-    // Esto no lo hagan chicos, lo voy a refactorizar luego
-
-    add_action( 'init', function() {
-      register_nav_menu('ns-navbar-menu',__( 'Nextscale navbar' ));
-    });
 
   }
 

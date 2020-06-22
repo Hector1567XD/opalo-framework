@@ -86,6 +86,13 @@ class NavbarWalker extends Walker_Nav_Menu
       $classes     = empty ( $item->classes ) ? array () : (array) $item->classes;
       $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter( $classes ), $item ));
 
+      $is_active = false;
+
+      if (in_array('current-menu-item', $classes) )
+      {
+          $is_active = true;
+      }
+
       // Obtenemos el titulo del item
     	$title = $item->title;
       // Obtenemos la descripcion del item
@@ -95,8 +102,8 @@ class NavbarWalker extends Walker_Nav_Menu
 
       // Comprobamos que el menu sea el primer item, si es asi obtenemos las clases correspondientes
       if ($item->menu_order === 1 || $item->menu_order === 0) {
-        $extraClassToFirst    = $this->classes['first_element_first-item'];
-        $extraClassToSecond   = $this->classes['second_element_first-item'];
+        $extraClassToFirst    = $this->classes['first_element_first_item'];
+        $extraClassToSecond   = $this->classes['second_element_first_item'];
       }else{ // Si no es el primer item, simplemente se deja en blanco
         $extraClassToFirst = null;
         $extraClassToSecond = null;
@@ -141,12 +148,24 @@ class NavbarWalker extends Walker_Nav_Menu
       // Obtenemos el titulo de este item
       $title = apply_filters( 'the_title', $title, $item->ID );
 
+      $reallyAfterLink = (($is_active) ? (isset($args->link_active_after)) ?  $args->link_active_after : $args->link_active_after : $args->link_after);
+
+      if (isset($args->link_after_if_not_first) && $item->menu_order > 1)
+      $reallyAfterLink .= $args->link_after_if_not_first;
+
+      $reallyBeforeLink = '';
+
+      if (isset($args->link_before_if_not_first) && $item->menu_order > 1)
+      $reallyBeforeLink .= $args->link_before_if_not_first;
+
+      $reallyBeforeLink .= $args->link_before;
+
       $output .= $args->before
           . Self::beginNode($this->elements[1],$attributes)
-          . $args->link_before
+          . $reallyBeforeLink
           . $title
           . Self::endNode($this->elements[1],$attributes)
-          . $args->link_after
+          . $reallyAfterLink
           . $description
           . $args->after;
 

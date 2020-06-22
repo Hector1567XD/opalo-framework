@@ -39,6 +39,7 @@ class Multilenguague
   // Constructor
   public function __construct($params = null) {
 
+
     // Si es que se han enviado parametros...
     if ($params)
       if (gettype($params) === 'object' || gettype($params) === 'array') {
@@ -49,6 +50,10 @@ class Multilenguague
           }
         }
       }
+
+
+    // Lenguaje por defecto
+    $this->lang = $this->defaultLang;
 
     // Detecta si polylang esta instalado
     if (function_exists ( 'pll_default_language' ) && function_exists ( 'pll_languages_list' ) && function_exists ( 'pll_default_language' ) && function_exists ( 'pll_register_string' )) {
@@ -70,6 +75,7 @@ class Multilenguague
   }
 
   public static function initialize($params = null) {
+
 
     // Construye la clase de multilenguague
     $ins = new Self($params);
@@ -163,7 +169,7 @@ class Multilenguague
   }
 
   // Obtener traduccion de polylang para una cadena
-  public static function getPlltranslate($string) {
+  public function getPlltranslate($string) {
     // Si esta el polylang instalado
     if ($this->havePolyland()) {
       return pll__($string);
