@@ -8,6 +8,7 @@
 
 use Opalo\Helpers\Complements\TaxonomiesComplement;
 use Opalo\Helpers\Complements\TemplateComplement;
+use Opalo\Helpers\Complements\NoticesComplement;
 use Opalo\Helpers\Complements\NavbarComplement;
 use Opalo\Helpers\Complements\HelperComplement;
 use Opalo\Helpers\Complements\PathComplement;
@@ -31,6 +32,8 @@ class InPage {
   use TaxonomiesComplement;
   // Funciones utiles al momento de programar la plantilla
   use TemplateComplement;
+  // Pasa al frontend los avisos de wordpress en la variable "opaloNotices"
+  use NoticesComplement;
   // Formas mas rapidas de crear un navbar!
   use NavbarComplement;
   // Funciones variadas de menor envergadura

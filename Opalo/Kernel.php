@@ -7,6 +7,9 @@ use Opalo\Core\SettingsUtil;
 // Interpretador de configuraciones de Opalo
 use Opalo\Core\Config\ConfigInterpreter;
 
+// Noticer Catcher de Opalo
+use Opalo\Core\NoticesCatcher;
+
 // Importaciones de los manejadores de mapas
 use Opalo\Core\Managers\ImportsManager;
 use Opalo\Core\Managers\SettingsManager;
@@ -71,8 +74,11 @@ class Kernel
   // Inicia el Kernel
   function start() {
 
-    // Ejecutamos la finalizacion del Kernel de Opalo
+    // Ejecutamos la inicializacion del Kernel de Opalo
     $this->configInterpreter->executeKernelStart();
+
+    // Ejecutamos el receptor de avisos
+    NoticesCatcher::initializeCatcher();
 
     #
     $this->executeSupports();

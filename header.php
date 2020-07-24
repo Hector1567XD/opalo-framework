@@ -13,6 +13,7 @@
 </head>
 
 <body <?php body_class(); ?>>
+  <?= InPage::noticesHandler(); ?>
 
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">

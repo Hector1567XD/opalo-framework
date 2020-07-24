@@ -218,6 +218,7 @@ trait ImportsManager
 
   private function mapImports($identify = 'none', $imports = [], $isStyle = false) {
     $i = 0;
+    if (!$imports) return $this;
     foreach ($imports as $import) { // Recorremos los scripts/stylos de '$imports' ($scripts/$styles)
       $suffix = '';
       if ($i > 0) // Si es la segunda vuelta, es hora de poner un sufijo
@@ -247,6 +248,7 @@ trait ImportsManager
       $i++;
 
     }
+
     return $this;
   }
 
