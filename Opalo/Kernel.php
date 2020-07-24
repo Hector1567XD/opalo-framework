@@ -4,6 +4,8 @@
 use Opalo\Core\Multilenguague;
 // Interface nucleo de Opalo para crear settings
 use Opalo\Core\SettingsUtil;
+// Interpretador de configuraciones de Opalo
+use Opalo\Core\Config\ConfigInterpreter;
 
 // Importaciones de los manejadores de mapas
 use Opalo\Core\Managers\ImportsManager;
@@ -44,9 +46,17 @@ class Kernel
   use TaxonomiesManager;
   use SidebarsManager;
 
+  // Interpretador de configuraciones
+  protected $configInterpreter;
+
   function __construct($config, $settings, $strings, $imports, $actions, $supports,$customPosts, $taxonomies, $sidebars)
   {
+
+    # Importo las configuraciones y las interpreto
     $this->config = $config;
+    $this->configInterpreter = new ConfigInterpreter($this->config);
+    $this->configInterpreter->executeKernelCreation();
+
     $this->getImports ($imports);
     $this->getActions ($actions);
     $this->getSupports($supports);
@@ -55,13 +65,17 @@ class Kernel
     $this->getCustomPosts($customPosts);
     $this->getTaxonomies($taxonomies);
     $this->getSidebars($sidebars);
+
   }
 
   // Inicia el Kernel
   function start() {
 
-    $this->executeSupports();
+    // Ejecutamos la finalizacion del Kernel de Opalo
+    $this->configInterpreter->executeKernelStart();
 
+    #
+    $this->executeSupports();
     $this->executeActions();
 
     // Iniciamos la sesion
@@ -83,11 +97,19 @@ class Kernel
     // Registramos los sidebars cuando se inicialicen los widgets
     add_action( 'widgets_init', [ $this, 'executeSidebars'] );
 
+    // Ejecutamos la finalizacion del Kernel de Opalo
+    $this->onKernelEnd();
+
   }
 
   // En la finalizacion de los settings
   function onExecuteSettingsEnd() {
     $this->executeStrings();
+  }
+
+  // En la finalizacion de la ejecusion del kernel de Opalo
+  private function onKernelEnd() {
+    $this->configInterpreter->executeKernelEnd();
   }
 
 }

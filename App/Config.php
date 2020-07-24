@@ -16,5 +16,7 @@ trait Config
     'woocommerce' => [
       # Soon...
     ],
+    # Say hello!
+    'say_hello' => false
   ];
 }

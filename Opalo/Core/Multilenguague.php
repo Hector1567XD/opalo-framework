@@ -13,14 +13,15 @@
  */
 
 use Opalo\Helpers\InPage;
+use Opalo\Core\CoreHelper;
 
 class Multilenguague
 {
 
   // Lista de idiomas permitidos en la aplicacion
-  protected $langList     = ['es','en'];
+  public $langList     = ['es','en'];
   // Idioma por defecto
-  protected $defaultLang  = 'es';
+  public $defaultLang  = 'es';
 
   // Esta polylang instalado?
   protected $isPolylandInstall          = false;
@@ -40,8 +41,12 @@ class Multilenguague
   public function __construct($params = null) {
 
 
-    // Si es que se han enviado parametros...
-    if ($params)
+    // Si es que se han enviado parametros de configuracion, obtenerlos dentro
+    CoreHelper::setConfigInside($this, $params, [
+      'langList',
+      'defaultLang'
+    ]);
+    /*if ($params)
       if (gettype($params) === 'object' || gettype($params) === 'array') {
         foreach ($params as $paramKey => $paramValue) {
           switch ($paramKey) {
@@ -49,7 +54,7 @@ class Multilenguague
             case 'defaultLang': $this->defaultLang  = $paramValue;  break;
           }
         }
-      }
+      }*/
 
 
     // Lenguaje por defecto
