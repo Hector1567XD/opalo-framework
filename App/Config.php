@@ -17,6 +17,7 @@ trait Config
       # Soon...
     ],
     # Say hello!
-    'say_hello' => false
+    'say_hello' => false,
+    'sendScriptsToFooter' => false
   ];
 }

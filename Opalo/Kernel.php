@@ -17,6 +17,7 @@ use Opalo\Core\Managers\StringsManager;
 use Opalo\Core\Managers\SupportsManager;
 use Opalo\Core\Managers\ActionsManager;
 use Opalo\Core\Managers\CustomPostManager;
+use Opalo\Core\Managers\EndpointsManager;
 use Opalo\Core\Managers\TaxonomiesManager;
 use Opalo\Core\Managers\SidebarsManager;
 
@@ -46,13 +47,14 @@ class Kernel
   use SupportsManager;
   use ActionsManager;
   use CustomPostManager;
+  use EndpointsManager;
   use TaxonomiesManager;
   use SidebarsManager;
 
   // Interpretador de configuraciones
   protected $configInterpreter;
 
-  function __construct($config, $settings, $strings, $imports, $actions, $supports,$customPosts, $taxonomies, $sidebars)
+  function __construct($config, $settings, $strings, $imports, $actions, $supports,$customPosts,$endpoints, $taxonomies, $sidebars)
   {
 
     # Importo las configuraciones y las interpreto
@@ -66,6 +68,7 @@ class Kernel
     $this->getStrings ($strings);
     $this->getSettings($settings);
     $this->getCustomPosts($customPosts);
+    $this->getEndpoints($endpoints);
     $this->getTaxonomies($taxonomies);
     $this->getSidebars($sidebars);
 
@@ -97,6 +100,8 @@ class Kernel
 
     // Registramos los custom-post
     $this->executeCustomPosts();
+    // Registramos los endpoints
+    $this->executeEndpoints();
     // Registramos las custom-taxonomies
     $this->executeTaxonomies();
 

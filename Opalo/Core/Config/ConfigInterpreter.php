@@ -15,6 +15,7 @@ use Opalo\Core\Config\ConfigInterpreterParent;
 
 // Configuraciones
 use Opalo\Core\Config\Configs\SayHello;
+use Opalo\Core\Config\Configs\Scripts;
 
 class ConfigInterpreter extends ConfigInterpreterParent
 {
@@ -25,6 +26,7 @@ class ConfigInterpreter extends ConfigInterpreterParent
 
   }
   protected function onStart() {
+    Scripts::sendToFooter($this->configs);
     
   }
   protected function onEnd() {

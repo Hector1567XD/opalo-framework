@@ -20,16 +20,18 @@ class Opalo
   protected $strings;
   protected $supports;
   protected $customPosts;
+  protected $endpoints;
   protected $taxonomies;
   protected $sidebars;
 
-  function addMaps($actions, $imports, $settings, $strings, $supports, $customPosts, $taxonomies, $sidebars) {
+  function addMaps($actions, $imports, $settings, $strings, $supports, $customPosts, $endpoints, $taxonomies, $sidebars) {
     $this->actions  = new $actions  ();
     $this->imports  = new $imports  ();
     $this->settings = new $settings ();
     $this->strings  = new $strings  ();
     $this->supports = new $supports ();
     $this->customPosts = new $customPosts ();
+    $this->endpoints = new $endpoints ();
     $this->taxonomies = new $taxonomies ();
     $this->sidebars = new $sidebars ();
   }
@@ -47,6 +49,7 @@ class Opalo
       $this->actions  ->getItems(),
       $this->supports ->getItems(),
       $this->customPosts ->getItems(),
+      $this->endpoints ->getItems(),
       $this->taxonomies ->getItems(),
       $this->sidebars ->getItems()
     );
