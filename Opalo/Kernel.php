@@ -54,7 +54,7 @@ class Kernel
   // Interpretador de configuraciones
   protected $configInterpreter;
 
-  function __construct($config, $settings, $strings, $imports, $actions, $supports,$customPosts,$endpoints, $taxonomies, $sidebars)
+  function __construct($config, $maps)
   {
 
     # Importo las configuraciones y las interpreto
@@ -62,15 +62,15 @@ class Kernel
     $this->configInterpreter = new ConfigInterpreter($this->config);
     $this->configInterpreter->executeKernelCreation();
 
-    $this->getImports ($imports);
-    $this->getActions ($actions);
-    $this->getSupports($supports);
-    $this->getStrings ($strings);
-    $this->getSettings($settings);
-    $this->getCustomPosts($customPosts);
-    $this->getEndpoints($endpoints);
-    $this->getTaxonomies($taxonomies);
-    $this->getSidebars($sidebars);
+    $this->getImports     ($maps['imports']);
+    $this->getActions     ($maps['actions']);
+    $this->getSupports    ($maps['supports']);
+    $this->getStrings     ($maps['strings']);
+    $this->getSettings    ($maps['settings']);
+    $this->getCustomPosts ($maps['custom_posts']);
+    $this->getEndpoints   ($maps['endpoints']);
+    $this->getTaxonomies  ($maps['taxonomies']);
+    $this->getSidebars    ($maps['sidebars']);
 
   }
 

@@ -19,21 +19,20 @@ class Opalo
   protected $settings;
   protected $strings;
   protected $supports;
-  protected $customPosts;
+  protected $custom_posts;
   protected $endpoints;
   protected $taxonomies;
   protected $sidebars;
+  protected $maps = [];
 
-  function addMaps($actions, $imports, $settings, $strings, $supports, $customPosts, $endpoints, $taxonomies, $sidebars) {
-    $this->actions  = new $actions  ();
-    $this->imports  = new $imports  ();
-    $this->settings = new $settings ();
-    $this->strings  = new $strings  ();
-    $this->supports = new $supports ();
-    $this->customPosts = new $customPosts ();
-    $this->endpoints = new $endpoints ();
-    $this->taxonomies = new $taxonomies ();
-    $this->sidebars = new $sidebars ();
+  function addMaps($mapsAddeds) {
+
+    // Agrega a Opalo todos los mapas declarados en App.php
+    foreach ($mapsAddeds as $map_name => $map) {
+      $this->{$map_name} = new $map();
+      $this->maps[] = $map_name;
+    }
+
   }
 
   function initialize() {
@@ -41,18 +40,12 @@ class Opalo
     $this->handleMaps();
     $this->onInitialize();
 
-    $kernel = new Kernel(
-      $this->config,
-      $this->settings ->getItems(),
-      $this->strings  ->getItems(),
-      $this->imports  ->getItems(),
-      $this->actions  ->getItems(),
-      $this->supports ->getItems(),
-      $this->customPosts ->getItems(),
-      $this->endpoints ->getItems(),
-      $this->taxonomies ->getItems(),
-      $this->sidebars ->getItems()
-    );
+    $mapsToKernel = [];
+    foreach ($this->maps as $map_name) {
+      $mapsToKernel[$map_name] = $this->{$map_name}->getItems();
+    }
+
+    $kernel = new Kernel($this->config, $mapsToKernel);
 
     $kernel->start();
 

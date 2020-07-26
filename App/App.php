@@ -16,7 +16,17 @@ class App extends Opalo
   // There's nothing here because ... HOLLYWOOD ;D
 
   public function handleMaps() {
-    $this->addMaps(Actions::class, Imports::class, Settings::class, Strings::class, Supports::class,CustomPosts::class, Taxonomies::class, Sidebars::class);
+    $this->addMaps([
+      'actions'       => Actions::class,
+      'imports'       => Imports::class,
+      'settings'      => Settings::class,
+      'strings'       => Strings::class,
+      'supports'      => Supports::class,
+      'custom_posts'  => CustomPosts::class,
+      'taxonomies'    => Taxonomies::class,
+      'sidebars'      => Sidebars::class,
+      'endpoints'     => Endpoints::class,
+    ]);
   }
 
   public function onInitialize() {
