@@ -18,6 +18,10 @@ trait Config
     ],
     # Say hello!
     'say_hello' => false,
-    'sendScriptsToFooter' => false
+    # Configuraciones de los scripts
+    'scripts' => [
+        # Envia los scripts al footer
+        'to_footer' => false
+    ]
   ];
 }
