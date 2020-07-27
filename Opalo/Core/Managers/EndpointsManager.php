@@ -19,10 +19,16 @@ trait EndpointsManager
   }
 
   function executeEndpoints() {
-    foreach ($this->endpoints as $endpointKey => $endpointValue){
-      add_action('wp_ajax_'.$endpointKey, $endpointValue );
-      add_action('wp_ajax_nopriv_'.$endpointKey, $endpointValue );
-    }
+    add_action( 'rest_api_init', function () {
+      foreach ($this->endpoints as $endpointKey => $endpointValue){
+        register_rest_route( $endpointValue['parent_path'], $endpointValue['path'],
+          array(
+            'methods' => $endpointValue['method'],
+            'callback' => $endpointValue['callback']
+          )
+        );
+      }
+    });
   }
 
 }

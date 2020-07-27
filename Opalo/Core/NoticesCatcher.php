@@ -48,31 +48,33 @@ class NoticesCatcher
     $noticesFronted = [];
 
     // Detecto si hay "avisos que mostrar"
-    if (wc_notice_count() > 0) {
-      // Obtengo los avisos
-      $notices = wc_get_notices();
+    if (function_exists( 'wc_notice_count' )) {
+      if (wc_notice_count() > 0) {
+        // Obtengo los avisos
+        $notices = wc_get_notices();
 
 
-      // Veo si hay avisos de error y los recorro
-      if (isset($notices['error']))
-        foreach ($notices['error'] as $errorNotice) {
-          if (isset($errorNotice['notice'])) {
-            // Guardo el texto del error limpio en lo variable de errores
-            $noticesFronted['errors'][] = str_replace(ClearInNotice,'',$errorNotice['notice']);
+        // Veo si hay avisos de error y los recorro
+        if (isset($notices['error']))
+          foreach ($notices['error'] as $errorNotice) {
+            if (isset($errorNotice['notice'])) {
+              // Guardo el texto del error limpio en lo variable de errores
+              $noticesFronted['errors'][] = str_replace(ClearInNotice,'',$errorNotice['notice']);
+            }
           }
-        }
 
-      // Veo si hay avisos de felicitaciones y los recorro
-      if (isset($notices['success']))
-        foreach ($notices['success'] as $successNotice) {
-          if (isset($successNotice['notice'])) {
-            // Guardo el texto de la felicitacion limpia en lo variable de felicitaciones
-            $noticesFronted['success'][] = str_replace(ClearInNotice,'',$successNotice['notice']);
+        // Veo si hay avisos de felicitaciones y los recorro
+        if (isset($notices['success']))
+          foreach ($notices['success'] as $successNotice) {
+            if (isset($successNotice['notice'])) {
+              // Guardo el texto de la felicitacion limpia en lo variable de felicitaciones
+              $noticesFronted['success'][] = str_replace(ClearInNotice,'',$successNotice['notice']);
+            }
           }
-        }
 
-      // Elimino los avisos que acabo de crear
-      wc_clear_notices();
+        // Elimino los avisos que acabo de crear
+        wc_clear_notices();
+      }
     }
 
     // Si, esto es un javascript
