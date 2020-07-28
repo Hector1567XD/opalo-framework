@@ -21,7 +21,7 @@ trait EndpointsManager
   function executeEndpoints() {
     add_action( 'rest_api_init', function () {
       foreach ($this->endpoints as $endpointKey => $endpointValue){
-        register_rest_route( $endpointValue['parent_path'], $endpointValue['path'],
+        register_rest_route( $endpointValue['namespace'], $endpointValue['path'],
           array(
             'methods' => $endpointValue['method'],
             'callback' => $endpointValue['callback']

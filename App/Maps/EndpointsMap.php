@@ -1,14 +1,19 @@
 <?php namespace App\Maps;
 
-use App\Maps\Endpoints\Hola;
+/*
+ *
+ */
+
+# Hello Controller
+use App\Maps\Endpoints\Hello;
 
 trait EndpointsMap {
   protected $items = [
-  	'hola' => [
-  		'parent_path' => 'prueba',
-  		'path' => '/hola',
+  	'hello' => [
+  		'namespace' => 'v2',
+  		'path' => 'hello',
   		'method' => 'GET',
-  		'callback' => [Hola::class,'handler']
+  		'callback' => [Hello::class,'handler']
   	],
   ];
 }

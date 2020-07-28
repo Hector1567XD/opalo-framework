@@ -1,10 +1,9 @@
 <?php  namespace App\Maps\Endpoints;
 
-class Hola
+class Hello
 {
 	public static function handler()
 	{
-		return 'hola';
+		return 'hello!';
 	}
-
 }
