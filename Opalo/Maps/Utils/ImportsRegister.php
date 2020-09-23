@@ -5,7 +5,7 @@ use Opalo\Maps\Utils\UtilsParent;
 /**
  * Clase padre para imports strings
  *
- * @version    Alpha: 0.0.1
+ * @version    Alpha: 0.0.3.1
  * @since      Class available since Release 0.0.1
  * @author     Feredev <hector1567xd@gmail.com>
  * @package    Opalo Framework
@@ -29,6 +29,14 @@ abstract class ImportsRegister extends UtilsParent
       $this->items[$name]['styles'][] = $item['styles'];
     if (isset($item['scripts']))
       $this->items[$name]['scripts'][] = $item['scripts'];
+  }
+
+  function addStyle(String $name, $styleRoute) {
+    $this->add($name,[ 'styles' => $styleRoute ]);
+  }
+
+  function addScript(String $name, $scriptRoute) {
+    $this->add($name,[ 'scripts' => $scriptRoute ]);
   }
 
 }

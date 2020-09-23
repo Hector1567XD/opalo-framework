@@ -13,7 +13,7 @@ use Opalo\Kernel;
 
 class Opalo
 {
-
+  // Mapas
   protected $actions;
   protected $imports;
   protected $settings;
@@ -23,6 +23,8 @@ class Opalo
   protected $endpoints;
   protected $taxonomies;
   protected $sidebars;
+
+  // Arreglo de Mapas
   protected $maps = [];
 
   function addMaps($mapsAddeds) {
@@ -41,6 +43,7 @@ class Opalo
     $this->onInitialize();
 
     $mapsToKernel = [];
+    //
     foreach ($this->maps as $map_name) {
       $mapsToKernel[$map_name] = $this->{$map_name}->getItems();
     }
